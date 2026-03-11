@@ -18,4 +18,10 @@ output_ranges/
 output_gui/
 output_gui_test_cli/
 output_gui_test_cli2/
+example/
 *.zip
+output_bleed_test/
+output_bleed_test_2/
+output_open_source_smoke/
+examples/
+release_smoke/
