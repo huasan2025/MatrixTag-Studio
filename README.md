@@ -30,7 +30,8 @@ This project supports:
 - `src/dm_label_tool/gui.py`: Tkinter GUI
 - `src/dm_label_tool/cli.py`: CLI parsing and execution
 - `src/dm_label_tool/config.py`: user config persistence
-- `dm_label_generator.py`: backward-compatible launcher
+- `dmlabeltool.py`: preferred local launcher
+- `dm_label_generator.py`: backward-compatible legacy launcher
 - `examples/`: reference images
 
 ## Requirements
@@ -62,15 +63,15 @@ python3 -m pip install -r requirements.txt
 ### 2) Launch GUI
 
 ```bash
-python3 dm_label_generator.py --gui
+python3 dmlabeltool.py --gui
 ```
 
-If you only run `python3 dm_label_generator.py`, GUI is default unless CLI flags are provided.
+If you run `python3 dmlabeltool.py`, GUI is the default unless CLI flags are provided.
 
 ### 3) Run CLI
 
 ```bash
-python3 dm_label_generator.py --cli \
+python3 dmlabeltool.py --cli \
   --ld-range 75-80 \
   --rd-range 100-120 \
   --middle-code 4000 \
@@ -94,7 +95,7 @@ pyinstaller packaging/dm_label_tool_gui.spec
 Build CLI executable:
 
 ```bash
-pyinstaller --name dm-label-cli --onefile dm_label_generator.py
+pyinstaller --name dm-label-cli --onefile dmlabeltool.py
 ```
 
 ## GitHub Releases (MVP)

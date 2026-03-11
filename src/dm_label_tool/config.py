@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 
-CONFIG_PATH = Path.home() / ".dm_label_generator_config.json"
+CONFIG_PATH = Path.home() / ".dmlabeltool_config.json"
 
 
 @dataclass
