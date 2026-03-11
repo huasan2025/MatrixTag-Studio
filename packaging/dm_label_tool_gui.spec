@@ -4,7 +4,7 @@ from pathlib import Path
 
 block_cipher = None
 
-project_root = Path(__file__).resolve().parents[1]
+project_root = Path(SPECPATH).resolve().parents[0]
 entry_script = project_root / "dm_label_generator.py"
 src_root = project_root / "src"
 
