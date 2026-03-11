@@ -1,4 +1,4 @@
-"""Tkinter GUI for MatrixTag Studio."""
+"""Tkinter GUI for DMLabelTool."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ except Exception as exc:  # pragma: no cover - runtime/platform dependent
     raise RuntimeError("Tkinter is required for GUI mode.") from exc
 
 
-APP_NAME = "MatrixTag Studio"
+APP_NAME = "DMLabelTool"
 
 
 class SettingsDialog(tk.Toplevel):

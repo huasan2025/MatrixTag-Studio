@@ -1,4 +1,4 @@
-# MatrixTag Studio
+# DMLabelTool
 
 Cross-platform industrial `Data Matrix` label generator for macOS and Windows.
 
@@ -55,7 +55,7 @@ Install `libdmtx` DLL and make sure it is available in `PATH` or bundled with th
 ### 1) Install
 
 ```bash
-cd /path/to/Codex
+cd /path/to/DMLabelTool
 python3 -m pip install -r requirements.txt
 ```
 
