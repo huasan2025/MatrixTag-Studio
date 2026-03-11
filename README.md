@@ -42,15 +42,118 @@ This project supports:
 - `pylibdmtx`
 - Runtime `libdmtx` shared library
 
-### macOS runtime dependency
+## Runtime Dependencies (Check First, Then Install)
+
+`DMLabelTool` uses `pylibdmtx`, which requires the native `libdmtx` runtime.
+
+### Windows: check before install
+
+1. Open PowerShell in your `DMLabelTool.exe` folder.
+2. Check whether `libdmtx` DLL is already available:
+
+```powershell
+Get-ChildItem .\*.dll, .\libs\*.dll -ErrorAction SilentlyContinue | Where-Object { $_.Name -match "dmtx" }
+where.exe libdmtx.dll
+where.exe libdmtx-64.dll
+where.exe liblibdmtx-64.dll
+```
+
+If any command finds a valid DLL path, you may already be done.
+
+3. Check whether VC++ runtime is already installed:
+
+```powershell
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\VisualStudio\12.0\VC\Runtimes\x64" -ErrorAction SilentlyContinue
+```
+
+If output contains `Installed : 1`, VC++ 2013 x64 runtime is already installed.
+
+### Windows: install (only if missing)
+
+1. Download `libdmtx` DLL:
+- [barcode-reader-dlls Releases](https://github.com/NaturalHistoryMuseum/barcode-reader-dlls/releases)
+- Download `liblibdmtx-64.dll` for 64-bit Windows.
+
+2. Put DLL next to `DMLabelTool.exe` (recommended).
+3. For compatibility, duplicate it to these names in the same folder:
+- `libdmtx.dll`
+- `libdmtx-64.dll`
+
+4. If VC++ runtime is missing, install:
+- [Microsoft Visual C++ 2013 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=40784)
+- Install `vcredist_x64.exe` on 64-bit Windows.
+
+5. Restart `DMLabelTool.exe`.
+
+### macOS: check before install
+
+1. Open Terminal.
+2. Check Homebrew and `libdmtx`:
+
+```bash
+brew --version
+brew list libdmtx
+```
+
+If `brew list libdmtx` succeeds, `libdmtx` is already installed.
+
+3. Optional runtime self-check:
+
+```bash
+python3 -c "from pylibdmtx.pylibdmtx import encode; print('pylibdmtx/libdmtx OK')"
+```
+
+### macOS: install (only if missing)
+
+1. Install Homebrew (if not installed):
+- [Homebrew official site](https://brew.sh/)
+
+2. Install `libdmtx`:
 
 ```bash
 brew install libdmtx
 ```
 
-### Windows runtime dependency
+3. Install Python dependencies:
 
-Install `libdmtx` DLL and make sure it is available in `PATH` or bundled with the executable.
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+4. Verify:
+
+```bash
+python3 -c "from pylibdmtx.pylibdmtx import encode; print('pylibdmtx/libdmtx OK')"
+```
+
+## Quick Start (GitHub Release Users)
+
+### Windows (DMLabelTool.exe)
+
+1. Download and unzip `DMLabelTool-windows.zip` from Releases.
+2. In the extracted folder, complete the checks/installation in `Runtime Dependencies` above.
+3. Double-click `DMLabelTool.exe`.
+4. Smoke test:
+- Prefix: `LD`
+- Middle code: `4000`
+- Start serial: `0035`
+- Quantity: `1`
+
+### macOS (DMLabelTool.app / local run)
+
+1. Download and unzip release artifact from Releases.
+2. Complete the checks/installation in `Runtime Dependencies` above.
+3. If the app bundle is blocked by Gatekeeper, remove quarantine:
+
+```bash
+xattr -dr com.apple.quarantine /path/to/DMLabelTool.app
+```
+
+4. Launch app, or run local GUI:
+
+```bash
+python3 dmlabeltool.py --gui
+```
 
 ## Quick Start
 
